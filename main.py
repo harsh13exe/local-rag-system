@@ -7,12 +7,16 @@ from langchain_community.vectorstores import Chroma
 # ---- CONFIG ----
 PERSIST_DIR = "./chroma_db"
 EMBED_MODEL = "nomic-embed-text"
-LLM_MODEL = "llama3.2:3b"
+LLM_MODEL = "harsh-resume-model"
 TOP_K = 6
 
 # In Docker, this points to the 'ollama' service name (see docker-compose.yml).
 # Locally without Docker, it falls back to your normal localhost Ollama.
 OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
+print("=" * 50)
+print("OLLAMA_BASE_URL:", OLLAMA_BASE_URL)
+print("LLM_MODEL:", LLM_MODEL)
+print("=" * 50)
 
 PROMPT_TEMPLATE = """You are a helpful assistant that answers questions using ONLY the context provided below.
 The context may contain multiple jobs/entries with different date ranges. To find the CURRENT or MOST RECENT one, look for the entry whose date range ends with "Present" — that is the current role, even if other entries have similar-looking dates.
